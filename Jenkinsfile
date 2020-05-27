@@ -1,6 +1,8 @@
 pipeline {
 
     agent any
+    // Scan will run everyday on master
+    triggers { cron( (BRANCH_NAME == "master") ? "@daily" : "" ) }
     
     stages {
       stage('Dependency check') {
